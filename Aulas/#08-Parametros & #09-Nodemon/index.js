@@ -52,4 +52,18 @@ app.listen(3333, function() {
                     res.send("Mensagem");
                     res.send("Mensagem");
                 });
+
+    --> AULA #09 - Nodemon
+            
+            O nodemon é uma ferramenta para executar os nossos projetos Node.js de uma forma contínua,
+            sem a necessidade de ficar toda hora reiniciando o terminal do node para o desenvolvimento
+            das aplicações WEB back-end utilizando o framework express no JavaScript.
+            
+            --> INSTALAÇÃO
+                Para instalação do nodemon: 
+                    npm install nodemon -g
+
+                Após a instalação precisamos deixar de rodar os nossos pojetos com o node, e passar
+                a usar o nodemon. Com isso sempre que o arquivo for salvo o nodemon reiniciará o servidor
+                automaticamente.
 */
