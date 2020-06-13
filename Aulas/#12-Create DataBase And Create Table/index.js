@@ -102,4 +102,8 @@ connection.connect(function(err) {
                         email VARCHAR(100),             --> Criação da coluna EMAIL
                         idade INT                       --> Criação da coluna IDADE
                     );
+
+        Para ver a estrutura das tabelas utiliza-se o comando:
+
+            mysql> DESCRIBE nomeDaTabela;
 */
