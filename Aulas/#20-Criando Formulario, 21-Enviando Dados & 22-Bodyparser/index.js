@@ -4,6 +4,8 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 //  IMPORTANDO SEQUELIZE
 const Sequelize = require('sequelize');
+// IMPORTANDO O BODY PARSER
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -11,6 +13,10 @@ const app = express();
     //  TEMPLATE ENGINE
         app.engine('handlebars', handlebars({defaultLayout: 'main'}));
         app.set('view engine', 'handlebars');
+
+    //  BODY PARSER
+        app.use(bodyParser.urlencoded({exended: false}));
+        app.use(bodyParser.json());
 
     //  CRIANDO CONEXÃO COM O BANCO DE DADOS MySQL
     const sequelize = new Sequelize('testBASE', 'root', '*****', {
@@ -33,7 +39,8 @@ const app = express();
         });
     //  Recebendo dadso por POST
         app.post('/add', (request, responce) => {
-            responce.send('Dados enviados por POST!!');
+            responce.send('Dados enviados por POST!! \n Titulo: ' 
+            + request.body.titulo + '\n Conteudo: ' + request.body.conteudo);
         });
 
 app.listen(3333, () => {console.log("Servidor Rodando!!")});
@@ -108,5 +115,49 @@ app.listen(3333, () => {console.log("Servidor Rodando!!")});
                 <form action="/add" method="POST"> ...
             --> NO NODE
                 app.post('/add', fuunction(request, responce) { responce.send('FORMULÁRIO ENVIADO!!'); });
+
+        --> BODY PARSER
+
+            O body parser é um utilitário que serve para receber/pegar os dados de qualquer formulário.
+
+            INSTALAÇÃO:
+
+                npm install --save body-parser
+
+            API:
+
+                const bodyParser = require('body-parser');
+
+            CONFIGURAÇÃO:
+                Para configurar o bodyParser basta adicionar as seguintes linhas de código:
+
+                    app.use(bodyParser.urlencoded({exended: false}));
+                    app.use(bodyParser.json());
+
+            UTILIZAÇÃO:
+
+                Para pegar um dado de um formulário através do bodyParser basta seguir o comando abaixo,
+                DENTRO DA ROTA:
+
+                    request.body.nomeDoCampo
+
+                OBS.: O nomeDoCampo é o nome dado à propriedade name="" existente no input!!
+
+                EXEMPLO:
+
+                    --> HTML
+
+                        <input type="text" name="exemplo" placeholder="Exemplo"> ...
+
+                    --> NODE.js --> Body Parser
+
+                        app.post('/', (request, responce) => {
+                            responce.send("Nome do exemplo: " + request.body.exemplo );
+                        });
+                    
+                Desta forma conseguimos pegar os dados enviados de um formulário. Por isso é muito importante
+                utilizar a propriedade name="" em todos os inputs existentes em um arquivo HTML. Caso essa
+                propriedade name="" não seja definida ou tenha um nome diferente do que a rota espera, ocorrerá
+                erro de 'undefined' (óbivio né). 
 
 */
