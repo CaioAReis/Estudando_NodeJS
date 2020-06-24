@@ -29,6 +29,14 @@ const app = express();
         responce.render('formulario');
     });
 
+    app.get('/delete/:id', (request, responce) => {
+        Post.destroy({where: {'id': request.params.id}}).then(() => {
+            responce.send("Postagem Deletada com Sucesso!!");
+        }).catch((err) => {
+            responce.send("Postagem NÃO existente!!");
+        });
+    });
+
     //  Recebendo dados por do formulário e adicionando ao banco de dados MySQL
         app.post('/add', (request, responce) => {
             Post.create({
@@ -53,7 +61,7 @@ app.listen(3333, () => {console.log("Servidor Rodando!!")});
 /*
     EXIBINDO DADOS:
 
-    -->Para pegar todos os dados do bando de dados, basta usar a fnction .all() em um model, dentro de uma rota,
+    -->Para pegar todos os dados do bando de dados, basta usar a function .findAll() em um model, dentro de uma rota,
     e depois precisamos passar esses dados para dentro da view:
 
     app.get('/', (request, responce) => {
@@ -102,4 +110,20 @@ app.listen(3333, () => {console.log("Servidor Rodando!!")});
 
             .findAll({order: [['id', 'ASC']]})    --> PARA DECRESCENTE
             .findAll({order: [['id', 'DESC']]})   --> PARA CRESCENTE
+
+    --> DELETANDO:
+
+        Sempre que quiser-mos deletar recursos do banco de dados utilizamos a função .destroy(), porém não 
+        adianta só usá-lo p/ deletar um regitro específico:
+
+        Para isso precisamos utilizar a seguinte estrutura dentro da função: {where: {'condições'}}
+        EXEMPLO:
+            nomeDoModel.destroy({where: {'id': id, 'nome': 'José', 'idade': 34}});
+        PARA PEGAR O ID OU OUTRO PARÂMETRO DA ROTA:
+            nomeDoModel.destroy({where: {'id': request.params.id, 'nome': request.params.nome}});
+
+        Para pegar o ID ou outro parâmetro dentro do HTML:
+
+            <a href="/delet/{{id}}"><button>DELETAR</button></a>
+        
 */
