@@ -49,4 +49,12 @@ module.exports = knex;
                 database : 'myapp_test'
             }
         });
+
+
+        CREATE TABLE games(
+            id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+            nome VARCHAR(120),
+            preco FLOAT,
+            PRIMARY KEY (id)
+        );
 */
