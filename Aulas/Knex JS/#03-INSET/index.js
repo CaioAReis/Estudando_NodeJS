@@ -43,8 +43,6 @@ database.insert(dados).into('games').then(data => {
     console.log(err);
 });
 
-
-
 /* INSER --> Knex
 
     Para fazer uma query de insert é muito simples:
@@ -92,5 +90,4 @@ database.insert(dados).into('games').then(data => {
         }).catch(err => {
             console.log(err);
         });
-
 */
