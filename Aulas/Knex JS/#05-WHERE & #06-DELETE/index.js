@@ -8,6 +8,17 @@ database.select().from('games').where('preco', '<', 40).then(data => {
     console.log(err);
 });
 
+//  DELETENDO REGISTROS E MOSTRANDO RESULTADO
+database.delete().from('games').where('id', 11).then(data => {
+    database.select().from('games').then(data => {
+        console.log(data);
+    }).catch(err => {
+        console.log(err);
+    });
+}).catch(err => {
+    console.log(err);
+});
+
 /*  WHERE
 
     --> Existem várias funções para auxiliar na cláusula dinâmica WHERE. Em muitos casos, funções podem ser 
@@ -63,5 +74,19 @@ database.select().from('games').where('preco', '<', 40).then(data => {
     EXEMPLO:
 
     database.raw('SELECT * FROM games WHERE name = "Pokemon" OR id = 3');
+*/
 
+/*  DELETE
+
+        --> Utiliza-se .del() ou .delete() para representar o DELETE do SQL pois delete é uma palavra reservada no JavaScript, 
+        esse método exclui uma ou mais linhas, com base em outras condições especificadas na consulta. 
+        Resolve o que foi solicitado retornando o número de linhas afetadas para a consulta.
+
+        EXEMPLO:
+
+            databse.del().from('games').where('id', 5);     OU      database.delete().from('games').where('id', 5);
+
+        EQUIVALENTE:
+
+            DELETE FROM games WHERE id = 5;
 */
