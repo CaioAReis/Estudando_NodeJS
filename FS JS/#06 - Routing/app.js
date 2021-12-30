@@ -1,4 +1,5 @@
 const express = require("express");
+require('./config/database');
 
 const userRouter = require("./src/Routes/user");
 const productRouter = require("./src/Routes/product");
@@ -7,6 +8,7 @@ const app = express();
 
 app.use(express.json());
 
+//  ROTAS
 //  http://localhost:3333/
 app.get("/hello", (request, response) => {
     response.send("EAE!! Se você tá lendo isso, FUNCIONOU!");

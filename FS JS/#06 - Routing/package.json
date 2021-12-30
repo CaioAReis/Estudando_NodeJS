@@ -10,7 +10,9 @@
   "author": "Caio Almeida",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "mongodb": "4.0.0",
+    "mongoose": "5.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
