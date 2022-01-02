@@ -10,7 +10,12 @@ const userSchema = new mongoose.Schema({
     age: {
         type: Number,
         require: true
-    }
+    },
+
+    productsList: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema);

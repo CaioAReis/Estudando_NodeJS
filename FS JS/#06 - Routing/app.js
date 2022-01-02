@@ -1,4 +1,6 @@
 const express = require("express");
+
+//  Carregando o banco
 require('./config/database');
 
 const userRouter = require("./src/Routes/user");
